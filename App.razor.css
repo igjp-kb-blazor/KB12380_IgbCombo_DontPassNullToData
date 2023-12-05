@@ -1,0 +1,7 @@
+﻿main {
+    max-width: 300px;
+    margin: 24px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}

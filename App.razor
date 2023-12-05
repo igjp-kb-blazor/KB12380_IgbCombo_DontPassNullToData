@@ -1,0 +1,43 @@
+﻿<main>
+
+    <IgbCombo Data="_items"
+              ValueKey="@nameof(ComboItem.Id)"
+              DisplayKey="@nameof(ComboItem.Name)">
+    </IgbCombo>
+
+    <IgbButton @onclick="OnClickBuildComboItems" Disabled="_itemsInitialized">
+        選択肢を設定
+    </IgbButton>
+
+</main>
+
+@code
+{
+    private record ComboItem(int Id, string Name);
+
+    // Data には、空でいいので、null でない値を渡すことが重要
+    private List<ComboItem> _items = new();
+
+    private bool _itemsInitialized = false;
+
+    private void OnClickBuildComboItems()
+    {
+        // 👇 これでは表示に反映されない
+        // _items.AddRange(new ComboItem[]
+        // {
+        //     new(Id: 1, Name: "選択肢1"),
+        //     new(Id: 2, Name: "選択肢2"),
+        //     new(Id: 3, Name: "選択肢3"),
+        // });
+
+        // Data に別のインスタンスを設定すると反映される
+        _items = new List<ComboItem>
+        {
+            new(Id: 1, Name: "選択肢1"),
+            new(Id: 2, Name: "選択肢2"),
+            new(Id: 3, Name: "選択肢3"),
+        };
+
+        _itemsInitialized = true;
+    }
+}
